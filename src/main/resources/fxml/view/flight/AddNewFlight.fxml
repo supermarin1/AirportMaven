@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.flight.AddNewFlightController"
+            fx:id="dialogPane">
+    <headerText>
+
+    </headerText>
+    <content>
+        <GridPane hgap="10" vgap="10">
+            <Label text="Flight Number: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="flightNumber" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Airline: " GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <ComboBox fx:id="cbxAirlines" promptText="Select existing airline"/>
+                <Label text="Or add new airline: "/>
+                <TextField fx:id="airline"/>
+            </VBox>
+
+            <Label text="Departure from: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="departureFrom" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Time of Departure: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="timeOfDeparture" text="HH:MM:SS" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            <Label text="Departure Terminal: " GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="departureTerminal" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+            <Label text="Arrival to: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <TextField fx:id="arrivalTo" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+            <Label text="Time of Arrival: " GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <TextField fx:id="timeOfArrival" text="HH:MM:SS" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+            <Label text="Arrival Terminal: " GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+            <TextField fx:id="arrivalTerminal" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+            <Label text="Set flight prices: " GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+
+            <Label text="Economy: " GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+            <TextField fx:id="economyFare" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+
+            <Label text="Business: " GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+            <TextField fx:id="businessFare" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+
+            <Label fx:id="errorLabel" GridPane.columnIndex="1" GridPane.rowIndex="11" visible="false"/>
+        </GridPane>
+    </content>
+</DialogPane>

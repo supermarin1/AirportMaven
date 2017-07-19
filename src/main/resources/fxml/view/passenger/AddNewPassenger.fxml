@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<DialogPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.passenger.AddNewPassengerController">
+    <headerText>
+
+    </headerText>
+
+    <content>
+        <GridPane hgap="10" vgap="10">
+            <Label text="Flight number: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="cbxFlightNumber" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
+                      GridPane.rowIndex="0"/>
+
+            <Label text="First name: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Second name: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="secondName" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Gender: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <fx:define>
+                <ToggleGroup fx:id="genderGroup"/>
+            </fx:define>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="3" spacing="10">
+                <RadioButton fx:id="male" text="MALE" toggleGroup="$genderGroup"/>
+                <RadioButton text="FEMALE" toggleGroup="$genderGroup"/>
+            </HBox>
+
+            <Label text="Nationality" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="nationality" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+            <Label text="Passport: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <TextField fx:id="passport" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+            <Label text="Date Of Birth: " GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <DatePicker fx:id="birthday" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+            <Label text="Cabin: " GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+            <fx:define>
+                <ToggleGroup fx:id="cabinGroup"/>
+            </fx:define>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="7" spacing="10">
+                <RadioButton fx:id="economy" text="ECONOMY " toggleGroup="$cabinGroup"/>
+                <RadioButton text="BUSINESS " toggleGroup="$cabinGroup"/>
+            </HBox>
+
+            <Label fx:id="errorLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" visible="false"/>
+        </GridPane>
+    </content>
+
+</DialogPane>

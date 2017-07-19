@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.price.PriceListViewController">
+    <children>
+
+        <VBox layoutX="1.0" prefHeight="473.0" prefWidth="760.0" AnchorPane.leftAnchor="10.0">
+            <children>
+                <!--passenger list show label, textField, button-->
+                <HBox fx:id="searchPriceList" alignment="BASELINE_LEFT" spacing="10">
+                    <children>
+                        <Label text="Price list of flights number: ">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="flightNumberPrice"/>
+                        <Button onAction="#showPriceList" text="Search"/>
+                    </children>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </HBox>
+
+
+                <AnchorPane fx:id="mainViewPane" prefHeight="333.0" prefWidth="747.0" visible="false"
+                            VBox.vgrow="ALWAYS">
+                    <children>
+                        <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="852.0"
+                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="183.0">
+                                    <children>
+
+                                        <GridPane hgap="10" prefHeight="389.0" prefWidth="212.0"
+                                                  vgap="10" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                            <children>
+                                                <Label text="Airline: " GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="airlineName" GridPane.columnIndex="1"
+                                                       GridPane.rowIndex="1">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="From: " GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="departureCity" GridPane.columnIndex="1"
+                                                       GridPane.rowIndex="2">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="To: " GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="arrivalCity" GridPane.columnIndex="1"
+                                                       GridPane.rowIndex="3">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                            </padding>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="238.0">
+                                    <children>
+                                        <!--passenger fxml.view table-->
+                                        <TableView fx:id="priceList" layoutX="-3.0" prefHeight="399.0" prefWidth="529.0"
+                                                   onMouseClicked="#handleMouseClick">
+                                            <columns>
+                                                <TableColumn fx:id="priceCabin" prefWidth="249" text="CABIN"/>
+                                                <TableColumn fx:id="fare" prefWidth="200" text="FARE"/>
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+
+                <HBox fx:id="changeDeleteButtons" alignment="CENTER_RIGHT" spacing="20.0" visible="false">
+                    <children>
+                        <Button fx:id="changeButton" disable="true" onAction="#changePrice" text="Change">
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </padding>
+                            <HBox.margin>
+                                <Insets bottom="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="10.0" top="5.0"/>
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.passenger.PassengerSearchController">
+
+    <VBox alignment="CENTER" AnchorPane.leftAnchor="10.0">
+        <children>
+
+            <AnchorPane>
+                <children>
+                    <!--passenger search by name controls-->
+                    <HBox fx:id="searchPassengerListByName" spacing="10" visible="false">
+                        <children>
+                            <Label text="Enter the first name: ">
+                                <padding>
+                                    <Insets left="10"/>
+                                </padding>
+                                <font>
+                                    <Font size="14.0"/>
+                                </font>
+                            </Label>
+                            <TextField fx:id="passengerFirstName"/>
+                            <Label text="Enter the second name: ">
+                                <font>
+                                    <Font size="14.0"/>
+                                </font>
+                            </Label>
+                            <TextField fx:id="passengerSecondName"/>
+                            <Button onAction="#showPassengerList" text="Search"/>
+                        </children>
+                    </HBox>
+
+                    <!--passenger search by passport controls-->
+                    <HBox fx:id="searchPassengerListByPassport" spacing="10" visible="false">
+                        <children>
+                            <Label alignment="BOTTOM_LEFT" text="Enter the passport number: ">
+                                <padding>
+                                    <Insets left="10"/>
+                                </padding>
+                                <font>
+                                    <Font size="14.0"/>
+                                </font>
+                            </Label>
+                            <TextField fx:id="passengerPassport"/>
+                            <Button onAction="#showPassengerList" text="Search"/>
+                        </children>
+                    </HBox>
+                </children>
+
+            </AnchorPane>
+
+            <AnchorPane fx:id="mainViewPane" visible="false">
+                <children>
+                    <!--passenger view table-->
+                    <TableView fx:id="passengersTable" onMouseClicked="#handleMouseClick" visible="false">
+                        <columns>
+                            <TableColumn fx:id="flightNumber" prefWidth="50" text="FLIGHT"/>
+                            <TableColumn fx:id="route" prefWidth="130" text="ROUTE"/>
+                            <TableColumn fx:id="firstName" prefWidth="90" text="FIRST NAME"/>
+                            <TableColumn fx:id="secondName" prefWidth="110" text="SECOND NAME"/>
+                            <TableColumn fx:id="gender" prefWidth="60" text="GENDER"/>
+                            <TableColumn fx:id="nationality" prefWidth="90" text="NATIONALITY"/>
+                            <TableColumn fx:id="passport" prefWidth="70" text="PASSPORT"/>
+                            <TableColumn fx:id="dateOfBirth" prefWidth="70" text="BIRTHDAY"/>
+                            <TableColumn fx:id="cabin" prefWidth="70" text="CABIN"/>
+                            <TableColumn fx:id="fare" prefWidth="40" text="FARE"/>
+                        </columns>
+                    </TableView>
+                </children>
+            </AnchorPane>
+
+            <HBox fx:id="changeDeleteButtons" alignment="CENTER_RIGHT" spacing="20.0" visible="false">
+                <children>
+                    <Button fx:id="newButton" text="New.." onAction="#addNewPassenger">
+                        <padding>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        </padding>
+                        <HBox.margin>
+                            <Insets bottom="10.0"/>
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="changeButton" disable="true" text="Change" onAction="#changePassengerInfo">
+                        <padding>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        </padding>
+                        <HBox.margin>
+                            <Insets bottom="10.0"/>
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="deleteButton" disable="true" text="Delete" onAction="#deletePassenger">
+                        <padding>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        </padding>
+                        <HBox.margin>
+                            <Insets bottom="10.0"/>
+                        </HBox.margin>
+                    </Button>
+                </children>
+                <padding>
+                    <Insets left="10.0" top="10.0"/>
+                </padding>
+            </HBox>
+        </children>
+    </VBox>
+</AnchorPane>

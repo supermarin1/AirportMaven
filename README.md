@@ -25,7 +25,7 @@ Requirements:
  - login and password to see all features;
 
 User permissions:
- - not-logined users - see flight arrivals/departures info only;
+ - not-logged users - see flight arrivals/departures info only;
  - low-level users - see all detailed flights information (passengers and prices lists)
    (login: low_level_staff, password: qwerty);
  - top-level user - see/change/delete for all information about flight/passenger/price

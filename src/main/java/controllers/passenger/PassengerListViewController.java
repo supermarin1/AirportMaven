@@ -9,13 +9,11 @@ import database.FlightDAO;
 import database.PassengerDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import model.flight.Cabin;
@@ -141,7 +139,6 @@ public class PassengerListViewController
 
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -154,9 +151,6 @@ public class PassengerListViewController
         addController = fxmlLoader.getController();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             addController.addNewPassenger();
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 
@@ -181,9 +175,6 @@ public class PassengerListViewController
         changeController = fxmlLoader.getController();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             changeController.changePassengerInfo();
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 
@@ -197,7 +188,6 @@ public class PassengerListViewController
         deleteButton.setDisable(false);
         selectedPassenger = passengerList.getSelectionModel().getSelectedItem();
         selectedPassenger.setFlightNumber(flightNumberPax.getText());
-        System.out.println(selectedPassenger.toString());
     }
 
     @Override

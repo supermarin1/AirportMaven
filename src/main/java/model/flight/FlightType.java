@@ -1,8 +1,5 @@
 package model.flight;
 
-/**
- *
- */
 public enum FlightType {
     DEPARTURE, ARRIVAL;
 

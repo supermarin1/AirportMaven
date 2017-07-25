@@ -84,9 +84,6 @@ public class AirportViewController implements AirportView, MainMenuLoginInterfac
         LoginDialogController loginDialogController = fxmlLoader.getController();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             login(loginDialogController);
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 
@@ -187,9 +184,6 @@ public class AirportViewController implements AirportView, MainMenuLoginInterfac
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
             addController.addNewPassenger();
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 
@@ -217,9 +211,6 @@ public class AirportViewController implements AirportView, MainMenuLoginInterfac
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
             addFlightController.addNewFlight();
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 

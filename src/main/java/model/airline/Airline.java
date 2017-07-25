@@ -1,8 +1,5 @@
 package model.airline;
 
-/**
- * Created by Maringa on 22.06.2017.
- */
 public class Airline
 {
     private int id;

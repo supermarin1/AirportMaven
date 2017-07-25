@@ -47,7 +47,7 @@ public class PassengerDAO {
         String secondNameParam = "%" + secondName + "%";
 
         try {
-            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_PASSENGERS_BY_NAME);
+            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_SEARCH_PASSENGERS_BY_NAME);
             sqlQuery.setString(1, firstNameParam);
             sqlQuery.setString(2, secondNameParam);
             ResultSet results = sqlQuery.executeQuery();
@@ -81,7 +81,7 @@ public class PassengerDAO {
         String passportParam = "%" + passport + "%";
 
         try {
-            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_PASSENGERS_BY_PASSPORT);
+            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_SEARCH_PASSENGERS_BY_PASSPORT);
             sqlQuery.setString(1, passportParam);
             ResultSet results = sqlQuery.executeQuery();
 
@@ -109,8 +109,8 @@ public class PassengerDAO {
     }
 
     public static void addNewPassengerToDB(Passenger passenger) {
-        LocalDate bdayDate = passenger.getDateOfBirth();
-        String birthday = bdayDate.getDayOfMonth() + "/" + bdayDate.getMonthValue() + "/" + bdayDate.getYear();
+        LocalDate bDayDate = passenger.getDateOfBirth();
+        String birthday = bDayDate.getDayOfMonth() + "/" + bDayDate.getMonthValue() + "/" + bDayDate.getYear();
         try {
             PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(QUERY_ADD_NEW_PASSENGER_START_PREP);
 
@@ -138,8 +138,8 @@ public class PassengerDAO {
     }
 
     public static void changePassengerDataInDB(String passport, Passenger passenger) {
-        LocalDate bdayDate = passenger.getDateOfBirth();
-        String birthday = bdayDate.getDayOfMonth() + "/" + bdayDate.getMonthValue() + "/" + bdayDate.getYear();
+        LocalDate bDayDate = passenger.getDateOfBirth();
+        String birthday = bDayDate.getDayOfMonth() + "/" + bDayDate.getMonthValue() + "/" + bDayDate.getYear();
         System.out.println(QUERY_CHANGE_PASSENGER_DATA_PREP);
 
         try {

@@ -5,7 +5,6 @@ import database.FlightDAO;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -20,8 +19,6 @@ public class ChangeFlightController implements ChangeFlight {
 
     private InputValidationController inputValidation = new InputValidationController();
 
-    @FXML
-    private DialogPane changeFlightDialog;
     @FXML
     private Label flightNumber;
     @FXML

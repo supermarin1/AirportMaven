@@ -8,14 +8,12 @@ import static database.QueryConstants.*;
 
 public class AirlineDAO {
 
-    public static int addNewAirline(String airline) {
-        int airlineID = 0;
+    public static void addNewAirline(String airline) {
         try {
             PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(QUERY_ADD_NEW_AIRLINE_PREP);
             sqlQuery.setString(1, airline);
             sqlQuery.setString(2, airline);
             sqlQuery.executeUpdate();
-            airlineID = getAirlineId(airline);
         } catch (SQLException e) {
             e.printStackTrace();
             try {
@@ -24,7 +22,6 @@ public class AirlineDAO {
                 e1.printStackTrace();
             }
         }
-        return airlineID;
     }
 
     public static List<String> getAirlines() {
@@ -34,7 +31,7 @@ public class AirlineDAO {
 
         List<String> airlines = new ArrayList<>();
         try (Statement statement = DataSource.getConn().createStatement();
-             ResultSet results = statement.executeQuery(sqlQuery.toString())) {
+             ResultSet results = statement.executeQuery(sqlQuery)) {
             while (results.next()) {
                 airlines.add(results.getString(AIRLINE_NAME));
             }
@@ -46,7 +43,7 @@ public class AirlineDAO {
         }
     }
 
-    public static int getAirlineId(String airline) {
+    static int getAirlineId(String airline) {
         int airlineId = 0;
         try {
             PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(QUERY_AIRLINE_ID_PREP);

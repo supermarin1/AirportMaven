@@ -15,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.flight.Flight;
 import model.price.Price;
@@ -147,9 +146,6 @@ public class PriceListViewController extends SearchController implements ReadWri
         changeController = fxmlLoader.getController();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             changeController.changePrice();
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 

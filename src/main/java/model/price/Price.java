@@ -2,9 +2,6 @@ package model.price;
 
 import model.flight.Cabin;
 
-/**
- *
- */
 public class Price {
 
     private String flightNumber;

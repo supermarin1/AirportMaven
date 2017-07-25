@@ -2,9 +2,6 @@ package model.flight;
 
 import java.time.LocalTime;
 
-/**
- *
- */
 public enum FlightStatus {
     CHECK_IN(LocalTime.of(2, 40)),
     BOARDING(LocalTime.of(0, 40)),

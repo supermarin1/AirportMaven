@@ -28,12 +28,9 @@ public class ChangePriceController implements ChangePrice {
     public void changePrice() {
         Price changedPrice = getChangedPriceFromDialog();
 
-        if (changedPrice.equals(oldPrice)) {
-            return;
-        } else {
+        if (!changedPrice.equals(oldPrice)) {
             PriceDAO.changePriceInDB(changedPrice);
         }
-        System.out.println(changedPrice.toString());
     }
 
     private Price getChangedPriceFromDialog() {

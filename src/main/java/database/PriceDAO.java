@@ -17,7 +17,7 @@ public class PriceDAO {
         List<Price> priceList = new ArrayList<>();
 
         try {
-            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_PRICE_LIST_BY_FLIGHT_NUMBER);
+            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_SEARCH_PRICE_LIST_BY_FLIGHT_NUMBER);
             sqlQuery.setString(1, flightNumber);
             ResultSet results = sqlQuery.executeQuery();
             while (results.next()) {
@@ -54,7 +54,7 @@ public class PriceDAO {
     public static Integer getPrice(String flightNumber, Cabin cabin) {
         Integer price = 0;
         try {
-            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_PRICE_BY_FLIGHT_NUMBER_AND_CABIN);
+            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_SEARCH_PRICE_BY_FLIGHT_NUMBER_AND_CABIN);
             sqlQuery.setInt(1, FlightDAO.getFlightId(flightNumber));
             sqlQuery.setString(2, cabin.toString());
             ResultSet results = sqlQuery.executeQuery();
@@ -97,22 +97,6 @@ public class PriceDAO {
             sqlQuery.setInt(1,inputPrice.getFare());
             sqlQuery.setInt(2,flightID);
             sqlQuery.setString(3,inputPrice.getCabin().toString());
-            sqlQuery.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                DataSource.getConn().rollback();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        }
-    }
-
-    public static void deletePriceFromDB(String flightNumber) {
-        try {
-            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(QUERY_DELETE_PRICE_PREP);
-            int flightID = FlightDAO.getFlightId(flightNumber);
-            sqlQuery.setInt(1, flightID);
             sqlQuery.execute();
         } catch (SQLException e) {
             e.printStackTrace();

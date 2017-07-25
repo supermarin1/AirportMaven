@@ -4,9 +4,6 @@ import model.flight.Cabin;
 
 import java.time.LocalDate;
 
-/**
- *
- */
 public class Passenger {
 
     private String flightNumber;

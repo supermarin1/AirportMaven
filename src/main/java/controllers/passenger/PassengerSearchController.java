@@ -199,7 +199,6 @@ public class PassengerSearchController extends SearchController implements
 
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -212,9 +211,6 @@ public class PassengerSearchController extends SearchController implements
         addController = fxmlLoader.getController();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             addController.addNewPassenger();
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 
@@ -242,9 +238,6 @@ public class PassengerSearchController extends SearchController implements
         changeController = fxmlLoader.getController();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             changeController.changePassengerInfo();
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 

@@ -5,7 +5,6 @@ import controllers.useraccess.permission.SearchController;
 import controllers.useraccess.permission.*;
 import controllers.validation.InputValidationController;
 import database.FlightDAO;
-import database.PriceDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -108,8 +107,6 @@ public class FlightSearchController
 
     @Override
     public ObservableList<Flight> getFlightsFromDB(String flightNum, String departure, String arrival) {
-        System.out.println("we're in method");
-
         List<Flight> flights = FlightDAO.queryFlightsByCities(flightNum, departure, arrival);
         if (flights != null) {
             flightsToShow.addAll(flights);
@@ -156,9 +153,6 @@ public class FlightSearchController
         addFlightController = fxmlLoader.getController();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             addFlightController.addNewFlight();
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 
@@ -184,9 +178,6 @@ public class FlightSearchController
         changeController = fxmlLoader.getController();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             changeController.changeFlightInfo();
-            System.out.println("OK pressed");
-        } else {
-            System.out.println("Cancel pressed");
         }
     }
 

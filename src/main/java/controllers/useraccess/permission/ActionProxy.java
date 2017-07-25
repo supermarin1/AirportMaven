@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class ActionProxy implements InvocationHandler {
     private Object obj;
 
-    public ActionProxy(Object obj) {
+    private ActionProxy(Object obj) {
         this.obj = obj;
     }
 
@@ -23,7 +23,6 @@ public class ActionProxy implements InvocationHandler {
         Method loginMethod = AirportViewController.class.getMethod("showMenu", User.class);
         Method permissionMethod = SearchController.class.getMethod("showButtons", User.class);
 
-
         //taking user permission
         for (Object arg : args) {
             Field field = arg.getClass().getDeclaredField("permission");
@@ -31,8 +30,6 @@ public class ActionProxy implements InvocationHandler {
             PermissionAction userPerm = (PermissionAction) field.get(arg);
             field.setAccessible(false);
 
-            //checking allowance
-            System.out.println("Checking allowance for " + method.getName());
 
             if (method.getName().equals(loginMethod.getName())) {
                 //taking method annotation
@@ -64,8 +61,8 @@ public class ActionProxy implements InvocationHandler {
         return result;
     }
 
-        public static <T>T newInstance (Object objAction){
-        return  (T) Proxy.newProxyInstance(objAction.getClass().getClassLoader(),
+    public static <T> T newInstance(Object objAction) {
+        return (T) Proxy.newProxyInstance(objAction.getClass().getClassLoader(),
                 objAction.getClass().getInterfaces(),
                 new ActionProxy(objAction));
     }

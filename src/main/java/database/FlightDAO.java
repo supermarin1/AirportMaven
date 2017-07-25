@@ -16,14 +16,13 @@ import static database.QueryConstants.*;
 public class FlightDAO {
 
     public static List<Flight> queryDepartureFlights() {
-        //SELECT * FROM flights WHERE origin = "KYIV" ORDER BY flight_id
-        String sql_query = QUERY_FLIGHT_SELECT_START + QUERY_INNER_JOIN_AIRLINES_TO_FLIGHTS +
+        String sql_query = QUERY_SEARCH_FLIGHT_START + QUERY_INNER_JOIN_AIRLINES_TO_FLIGHTS +
                 " WHERE " + FLIGHT_DEPARTURE + " = \"" + AIRPORT_HOST + "\"";
 
         List<Flight> departureFlights1 = new ArrayList<>();
 
         try (Statement statement = DataSource.getConn().createStatement();
-             ResultSet results = statement.executeQuery(sql_query);) {
+             ResultSet results = statement.executeQuery(sql_query)) {
             while (results.next()) {
 
                 Flight flight = new Flight();
@@ -51,14 +50,13 @@ public class FlightDAO {
     }
 
     public static List<Flight> queryArrivalFlights() {
-        //SELECT * FROM flights WHERE destination = "KYIV" ORDER BY flight_id
-        String sqlQuery = QUERY_FLIGHT_SELECT_START + QUERY_INNER_JOIN_AIRLINES_TO_FLIGHTS +
+        String sqlQuery = QUERY_SEARCH_FLIGHT_START + QUERY_INNER_JOIN_AIRLINES_TO_FLIGHTS +
                 " WHERE " + FLIGHT_ARRIVAL + " = \"" + AIRPORT_HOST + "\"";
 
         List<Flight> departureFlights1 = new ArrayList<>();
 
         try (Statement statement = DataSource.getConn().createStatement();
-             ResultSet results = statement.executeQuery(sqlQuery);) {
+             ResultSet results = statement.executeQuery(sqlQuery)) {
             while (results.next()) {
 
                 Flight flight = new Flight();
@@ -90,7 +88,7 @@ public class FlightDAO {
         Flight flight = new Flight();
 
         try {
-            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_FLIGHT_BY_FLIGHT_NUMBER);
+            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_SEARCH_FLIGHT_BY_FLIGHT_NUMBER);
             sqlQuery.setString(1, flightNumber);
             ResultSet results = sqlQuery.executeQuery();
 
@@ -120,10 +118,10 @@ public class FlightDAO {
         String flightNumberParam = "%" + flightNumber + "%";
         String departureParam = "%" + departure + "%";
         String arrivalParam = "%" + arrival + "%";
-        System.out.println(PREP_SEARCH_FLIGHT);
+        System.out.println(PREP_SEARCH_FLIGHT_BY_CITIES);
 
         try {
-            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_SEARCH_FLIGHT);
+            PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_SEARCH_FLIGHT_BY_CITIES);
             sqlQuery.setString(1, flightNumberParam);
             sqlQuery.setString(2, departureParam);
             sqlQuery.setString(3, arrivalParam);
@@ -157,7 +155,7 @@ public class FlightDAO {
 
     public static boolean flightIsExist(String flightNumber) {
         boolean isExist = false;
-        //SELECT EXISTS (SELECT flights.number FROM flights WHERE flights.number = "PS11");
+
         String sqlQuery = "SELECT EXISTS (SELECT * FROM " +
                 TABLE_FLIGHTS + " WHERE " + TABLE_FLIGHTS + "." + FLIGHT_NUMBER +
                 " = \"" + flightNumber + "\")";

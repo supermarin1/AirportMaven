@@ -19,10 +19,6 @@ public class DataSource {
         return conn;
     }
 
-    private static final String DB_NAME_SQLITE = "airport.db";
-    private static final String CONNECTION_STRING_SQLITE = "jdbc:sqlite:D:\\IdeaProjects\\Airport\\src\\database\\" + DB_NAME_SQLITE;
-
-
     private static final String DB_NAME_MYSQL = "airport";
     private static final String CONNECTION_STRING_MYSQL = "jdbc:mysql://88.198.104.94/" + DB_NAME_MYSQL;
     private static final String CONNECTION_USER = "airport";
@@ -31,13 +27,6 @@ public class DataSource {
 
     public boolean open(){
 
-//        try {
-//            conn = DriverManager.getConnection(CONNECTION_STRING_SQLITE);
-//            return true;
-//        } catch (SQLException e) {
-//            System.out.println("Can't connect to database: " + e.getMessage());
-//            return false;
-//        }
         try {
             conn = DriverManager.getConnection(CONNECTION_STRING_MYSQL,CONNECTION_USER,CONNECTION_PASSWORD);
             return true;

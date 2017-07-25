@@ -23,3 +23,10 @@ Requirements:
  - JVM 1.8;
  - Internet connection (to get acess to database);
  - login and password to see all features;
+
+User permissions:
+ - not-logined users - see flight arrivals/departures info only;
+ - low-level users - see all detailed flights information (passengers and prices lists)
+   (login: low_level_staff, password: qwerty);
+ - top-level user - see/change/delete for all information about flight/passenger/price
+   (login/password under request).

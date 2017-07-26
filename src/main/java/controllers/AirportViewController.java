@@ -96,7 +96,7 @@ public class AirportViewController implements AirportView, MainMenuLoginInterfac
     }
 
     @Override
-    @MyPermission(value = {PermissionAction.ADMIN, PermissionAction.READ_WRITE, PermissionAction.READ_WRITE})
+    @MyPermission(value = {PermissionAction.READ_WRITE, PermissionAction.READ_ONLY})
     public void showMenu(User user) {
         flightsMenu.setVisible(true);
         passengersMenu.setVisible(true);

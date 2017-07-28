@@ -29,4 +29,4 @@ User permissions:
  - low-level users - see all detailed flights information (passengers and prices lists)
    (login: low_level_staff, password: qwerty);
  - top-level user - see/change/delete for all information about flight/passenger/price
-   (login/password under request).
+   (login/password on request).

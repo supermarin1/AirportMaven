@@ -140,7 +140,6 @@ public class PassengerDAO {
     public static void changePassengerDataInDB(String passport, Passenger passenger) {
         LocalDate bDayDate = passenger.getDateOfBirth();
         String birthday = bDayDate.getDayOfMonth() + "/" + bDayDate.getMonthValue() + "/" + bDayDate.getYear();
-        System.out.println(QUERY_CHANGE_PASSENGER_DATA_PREP);
 
         try {
             PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(QUERY_CHANGE_PASSENGER_DATA_PREP);

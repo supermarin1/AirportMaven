@@ -1,7 +1,7 @@
 package model.user;
 
 
-import controllers.useraccess.permission.PermissionAction;
+import service.useraccess.permission.PermissionAction;
 
 public class User {
     private String userName;

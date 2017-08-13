@@ -1,6 +1,6 @@
 package database;
 
-import controllers.useraccess.permission.PermissionAction;
+import service.useraccess.permission.PermissionAction;
 import model.user.User;
 
 import java.sql.PreparedStatement;

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.flight.FlightSearchController">
+            fx:controller="controller.flight.FlightSearchController">
 
     <VBox alignment="CENTER" AnchorPane.leftAnchor="10.0">
         <HBox spacing="10">

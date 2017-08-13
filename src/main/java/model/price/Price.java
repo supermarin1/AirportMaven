@@ -10,7 +10,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return "Price{" +
+        return "price{" +
                 "flightNumber='" + flightNumber + '\'' +
                 ", cabin=" + cabin +
                 ", fare=" + fare +

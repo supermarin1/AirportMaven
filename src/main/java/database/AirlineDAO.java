@@ -37,7 +37,6 @@ public class AirlineDAO {
             }
             return airlines;
         } catch (SQLException e) {
-            System.out.println("Query failed: " + e.getMessage());
             e.printStackTrace();
             return null;
         }

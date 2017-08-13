@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <DialogPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.flight.ChangeFlightController" fx:id="changeFlightDialog">
+            fx:controller="controller.flight.ChangeFlightController" fx:id="changeFlightDialog">
     <headerText>
 
     </headerText>

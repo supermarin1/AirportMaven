@@ -24,26 +24,11 @@ public class FlightDAO {
         try (Statement statement = DataSource.getConn().createStatement();
              ResultSet results = statement.executeQuery(sql_query)) {
             while (results.next()) {
-
-                Flight flight = new Flight();
-                flight.setType(FlightType.getFlightType(results.getString(FLIGHT_ARRIVAL)));
-                flight.setNumber(results.getString(FLIGHT_NUMBER));
-                flight.setAirline(results.getString(FLIGHT_AIRLINE));
-                flight.setArrivalCity(results.getString(FLIGHT_ARRIVAL));
-                flight.setDepartureCity(results.getString(FLIGHT_DEPARTURE));
-                flight.setTimeOfDeparture(results.getString(FLIGHT_DEP_TIME));
-                flight.setTimeOfArrival(results.getString(FLIGHT_ARR_TIME));
-                flight.setDepartureTerminal(results.getString(FLIGHT_DEP_TERMINAL));
-                flight.setArrivalTerminal(results.getString(FLIGHT_ARR_TERMINAL));
-                flight.setStatus(Flight.getFlightStatus(results.getString(FLIGHT_STATUS),
-                        flight.getType(),
-                        flight));
-
+                Flight flight = createFlight(results);
                 departureFlights1.add(flight);
             }
             return departureFlights1;
         } catch (SQLException e) {
-            System.out.println("Query failed: " + e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -58,30 +43,33 @@ public class FlightDAO {
         try (Statement statement = DataSource.getConn().createStatement();
              ResultSet results = statement.executeQuery(sqlQuery)) {
             while (results.next()) {
-
-                Flight flight = new Flight();
-
-                flight.setType(FlightType.getFlightType(results.getString(FLIGHT_ARRIVAL)));
-                flight.setNumber(results.getString(FLIGHT_NUMBER));
-                flight.setAirline(results.getString(FLIGHT_AIRLINE));
-                flight.setArrivalCity(results.getString(FLIGHT_ARRIVAL));
-                flight.setDepartureCity(results.getString(FLIGHT_DEPARTURE));
-                flight.setTimeOfDeparture(results.getString(FLIGHT_DEP_TIME));
-                flight.setTimeOfArrival(results.getString(FLIGHT_ARR_TIME));
-                flight.setDepartureTerminal(results.getString(FLIGHT_DEP_TERMINAL));
-                flight.setArrivalTerminal(results.getString(FLIGHT_ARR_TERMINAL));
-                flight.setStatus(Flight.getFlightStatus(results.getString(FLIGHT_STATUS),
-                        flight.getType(),
-                        flight));
-
+                Flight flight = createFlight(results);
                 departureFlights1.add(flight);
             }
             return departureFlights1;
         } catch (SQLException e) {
-            System.out.println("Query failed: " + e.getMessage());
             e.printStackTrace();
             return null;
         }
+    }
+
+    private static Flight createFlight(ResultSet resultSet) throws SQLException {
+        Flight flight = new Flight();
+
+        flight.setType(FlightType.getFlightType(resultSet.getString(FLIGHT_ARRIVAL)));
+        flight.setNumber(resultSet.getString(FLIGHT_NUMBER));
+        flight.setAirline(resultSet.getString(FLIGHT_AIRLINE));
+        flight.setArrivalCity(resultSet.getString(FLIGHT_ARRIVAL));
+        flight.setDepartureCity(resultSet.getString(FLIGHT_DEPARTURE));
+        flight.setTimeOfDeparture(resultSet.getString(FLIGHT_DEP_TIME));
+        flight.setTimeOfArrival(resultSet.getString(FLIGHT_ARR_TIME));
+        flight.setDepartureTerminal(resultSet.getString(FLIGHT_DEP_TERMINAL));
+        flight.setArrivalTerminal(resultSet.getString(FLIGHT_ARR_TERMINAL));
+        flight.setStatus(Flight.getFlightStatus(resultSet.getString(FLIGHT_STATUS),
+                flight.getType(),
+                flight));
+
+        return flight;
     }
 
     public static Flight queryFlightByFlightNumber(String flightNumber) {
@@ -118,7 +106,6 @@ public class FlightDAO {
         String flightNumberParam = "%" + flightNumber + "%";
         String departureParam = "%" + departure + "%";
         String arrivalParam = "%" + arrival + "%";
-        System.out.println(PREP_SEARCH_FLIGHT_BY_CITIES);
 
         try {
             PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(PREP_SEARCH_FLIGHT_BY_CITIES);
@@ -232,25 +219,23 @@ public class FlightDAO {
         }
     }
 
-    public static void changeFlightDataInDB(Flight flight) {
-        System.out.println(QUERY_CHANGE_FLIGHT_DATA_PREP);
-
+    public static void changeFlightDataInDB(String flightNumber, Flight changedFlight) {
         try {
             PreparedStatement sqlQuery = DataSource.getConn().prepareStatement(QUERY_CHANGE_FLIGHT_DATA_PREP);
-            sqlQuery.setString(1, flight.getDepartureCity());
-            sqlQuery.setString(2, String.valueOf(flight.getTimeOfDeparture()));
-            sqlQuery.setString(3, flight.getDepartureTerminal());
-            sqlQuery.setString(4, flight.getArrivalCity());
-            sqlQuery.setString(5, String.valueOf(flight.getTimeOfArrival()));
-            sqlQuery.setString(6, flight.getArrivalTerminal());
+            sqlQuery.setString(1, changedFlight.getDepartureCity());
+            sqlQuery.setString(2, String.valueOf(changedFlight.getTimeOfDeparture()));
+            sqlQuery.setString(3, changedFlight.getDepartureTerminal());
+            sqlQuery.setString(4, changedFlight.getArrivalCity());
+            sqlQuery.setString(5, String.valueOf(changedFlight.getTimeOfArrival()));
+            sqlQuery.setString(6, changedFlight.getArrivalTerminal());
 
-            if (flight.getStatus().equals(FlightStatus.SCHEDULED)) {
+            if (changedFlight.getStatus().equals(FlightStatus.SCHEDULED)) {
                 sqlQuery.setString(7, null);
             } else {
-                sqlQuery.setString(7, String.valueOf(flight.getStatus()));
+                sqlQuery.setString(7, String.valueOf(changedFlight.getStatus()));
             }
 
-            sqlQuery.setString(8, flight.getNumber());
+            sqlQuery.setString(8, flightNumber);
 
             sqlQuery.executeUpdate();
         } catch (SQLException e) {

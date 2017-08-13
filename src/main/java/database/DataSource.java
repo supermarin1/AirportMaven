@@ -9,12 +9,16 @@ public class DataSource {
 
 
     private static DataSource dataSource = new DataSource();
-    private DataSource() {}
+
+    private DataSource() {
+    }
+
     public static DataSource getDataSource() {
         return dataSource;
     }
 
     private static Connection conn;
+
     static Connection getConn() {
         return conn;
     }
@@ -25,13 +29,12 @@ public class DataSource {
     private static final String CONNECTION_PASSWORD = "7Gxcw6fmxnaunmKB";
 
 
-    public boolean open(){
+    public boolean open() {
 
         try {
-            conn = DriverManager.getConnection(CONNECTION_STRING_MYSQL,CONNECTION_USER,CONNECTION_PASSWORD);
+            conn = DriverManager.getConnection(CONNECTION_STRING_MYSQL, CONNECTION_USER, CONNECTION_PASSWORD);
             return true;
         } catch (SQLException e) {
-            System.out.println("Can't connect to database: " + e.getMessage());
             return false;
         }
 
@@ -44,7 +47,7 @@ public class DataSource {
                 conn.close();
             }
         } catch (SQLException e) {
-            System.out.println("Can't close connection: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
